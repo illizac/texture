@@ -86,7 +86,7 @@ function* editType(){
 			case 200: 
 				Toast.info('操作成功')
 				yield delay(500)
-				hashHistory.push('/typeList')	
+				hashHistory.goBack()
 				// yield put({
 				// 	type: ACTION.GETTYPE, 
 				// 	param: action.param.userid ? {id:  action.param.userid } : {},
@@ -112,7 +112,7 @@ function* deleteType(){
 			case 200: 
 				Toast.info('删除成功')
 				yield delay(500)
-				hashHistory.push('/typeList')	
+				hashHistory.goBack()
 				break
 			default: 
 				Toast.info('删除失败')

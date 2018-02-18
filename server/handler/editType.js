@@ -7,7 +7,7 @@ module.exports = (req, response, param) => {
 	const editsql = `UPDATE dishtype SET typename = "${param.typename}" WHERE id = ${param.id}`
 		addsql = `INSERT INTO dishtype(typename, userid) VALUES('${param.typename}', ${param.userid})`
 
-	repeatType(param.typename)
+	repeatType(param.typename, param.userid)
 	.then(val => 
 		new Promise((resolve, reject) => {
 			if(val.length > 0){
