@@ -65,7 +65,7 @@ function* savechanges(){
 
 function* getType(){
 	yield takeLatest(ACTION.GETTYPE, function* (action){
-		action.loading ? '' : Toast.loading('Loading...', 0, _ => {})
+		Toast.loading('Loading...', 0, _ => {})
 		let data = yield call(fetchApi.getType, action.param)
 		if(data.code == 200){
 			yield put({type: ACTION.GETTYPESUCCESS, data: JSON.parse(data.data)})
@@ -73,7 +73,21 @@ function* getType(){
 			Toast.Info('获取列表失败')
 		}
 		yield delay(500)
-		action.loading ? '' : Toast.hide()
+		Toast.hide()
+	})
+}
+
+function* getDishes(){
+	yield takeLatest(ACTION.GETDISH, function* (action){
+		Toast.loading('Loading...', 0, _ => {})
+		let data = yield call(fetchApi.getDishes, action.param)
+		if(data.code == 200){
+			yield put({type: ACTION.GETDISHCOMPLETE, data: JSON.parse(data.data)})
+		}else{
+			Toast.Info('获取菜单失败')
+		}
+		yield delay(500)
+		Toast.hide()
 	})
 }
 
@@ -87,11 +101,6 @@ function* editType(){
 				Toast.info('操作成功')
 				yield delay(500)
 				hashHistory.goBack()
-				// yield put({
-				// 	type: ACTION.GETTYPE, 
-				// 	param: action.param.userid ? {id:  action.param.userid } : {},
-				// 	loading: true
-				// })
 				break
 			case 60015:
 				Toast.info('分类重复')
@@ -128,6 +137,7 @@ export function* fetchSaga(){
 	yield fork(getType)
 	yield fork(editType)
 	yield fork(deleteType)
+	yield fork(getDishes)
 }
 
 

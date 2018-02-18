@@ -23,3 +23,5 @@ export const getType = param => fetch(handleParam('getType', param)).then(res =>
 export const editType = param => fetch(handleParam('editType', param)).then(res => res.json())
 
 export const deleteType = param => fetch(handleParam('deleteType', param)).then(res => res.json())
+
+export const getDishes = param => fetch(handleParam('getDishes', param)).then(res => res.json())

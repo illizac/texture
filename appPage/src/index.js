@@ -13,6 +13,7 @@ import Home from './pages/index.jsx'
 import Settings from './pages/settings.jsx'
 import TypeList from './pages/typeList.jsx'
 import TypeForm from './pages/typeForm.jsx'
+import DishList from './pages/dishList.jsx'
 
 const routeConfig = (
 	<Route path = {'/'} component = {Page}>
@@ -23,6 +24,7 @@ const routeConfig = (
 		<Route path = {'/settings'} component = {Settings} />
 		<Route path = {'/typeList'} component = {TypeList} />
 		<Route path = {'/typeForm'} component = {TypeForm} />
+		<Route path = {'/dishList'} component = {DishList} />
 	</Route>
 )
 

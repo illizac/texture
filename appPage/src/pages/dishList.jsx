@@ -3,32 +3,32 @@ import { connect } from 'react-redux'
 import { hashHistory } from 'react-router'
 import { WhiteSpace, NavBar, Icon, List } from 'antd-mobile'
 const Item = List.Item
-import { GETTYPE, TYPEEDIT } from '../redux/createAction'
+import { GETDISH, DISHEDIT } from '../redux/createAction'
 
 @connect(state => ({
     userinfo: state.global.userinfo,
-    typelist: state.global.typelist
+    dishlist: state.global.dishlist
 }), dispath => ({
-    getType(param = {}){
+    getDish(param = {}){
         dispath({
-            type: GETTYPE,
+            type: GETDISH,
             param
         })
     },
-    typeedit(data){ dispath({ type: TYPEEDIT, data }) }
+    dishedit(data){ dispath({ type: DISHEDIT, data }) }
 }))
-class TypeList extends React.Component{
+class DishList extends React.Component{
     constructor(props){super(props)}
 
     componentWillMount(){
         if(this.props.userinfo.id){
-            this.props.getType({id: this.props.userinfo.id})
+            this.props.getDish({id: this.props.userinfo.id})
         }
     }
 
     toAdd = type => {
-        this.props.typeedit(type == 'add' ? {} : type)
-        hashHistory.push('/typeForm')
+        this.props.dishedit(type == 'add' ? {} : type)
+        // hashHistory.push('/typeForm')
     }
 
     render() {
@@ -36,20 +36,20 @@ class TypeList extends React.Component{
             <div style={{display: 'flex', flexDirection: 'column', height: '100%'}}>
                 <NavBar
                 leftContent={<Icon onClick={_ => hashHistory.goBack()} type='left'/>}
-                >{'分类列表'}</NavBar>
+                >{'菜单列表'}</NavBar>
 
-                <List renderHeader={() => '分类列表'}>
-                    {this.props.typelist.map((v, k) => 
+                <List renderHeader={() => '菜单列表'}>
+                    {this.props.dishlist.map((v, k) => 
                         <Item 
                         arrow="horizontal" 
                         key={k}
-                        extra='修改' 
+                        extra={v.price ? `¥${v.price}` : ''} 
                         onClick={_ => this.toAdd(v)}>{
-                            v.typename
+                            v.dishname
                         }</Item>
                     )}
                     <Item onClick={_ => this.toAdd('add')}>
-                        <i class="iconfont" style={{fontSize: 15}}>&#xe647;</i> 添加新分类
+                        <i class="iconfont" style={{fontSize: 15}}>&#xe647;</i> 添加新菜品
                     </Item>
                 </List>
 
@@ -59,4 +59,4 @@ class TypeList extends React.Component{
 
 }
 
-export default TypeList
+export default DishList

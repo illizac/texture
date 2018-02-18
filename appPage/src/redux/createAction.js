@@ -19,3 +19,8 @@ export const EDITTYPE = 'EDITTYPE'
 
 export const DELETETYPE = 'DELETETYPE'
 
+export const GETDISH = 'GETDISH'
+export const GETDISHCOMPLETE = 'GETDISHCOMPLETE'
+
+export const DISHEDIT = 'DISHEDIT'
+
