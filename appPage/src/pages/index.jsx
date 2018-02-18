@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { hashHistory } from 'react-router'
-import { WhiteSpace, Toast, NavBar, Icon, TabBar } from 'antd-mobile'
+import { WhiteSpace, Toast, NavBar, Icon, TabBar, Popover } from 'antd-mobile'
+const Item = Popover.Item
 import {  } from '../redux/createAction'
 
 @connect(state => ({
@@ -15,16 +16,61 @@ class Home extends React.Component{
     state = {
         selectedTab: 'none',
         hidden: false,
-        fullScreen: true
+        fullScreen: true,
+        visible: false
     }
 
-    navSettings = _ => hashHistory.push('/settings')
+    onSelect = (opt) => {
+        switch(opt.props.value){
+            case 'addDish':
+                hashHistory.push('/dishList')
+                break
+            case 'addType':
+                hashHistory.push('/typeList')
+                break
+            case 'settings':
+                hashHistory.push('/settings')
+                break
+            default: 
+                break
+        }
+
+        this.setState({
+          visible: false
+        })
+    }
 
     render() {
         return (
             <div style={{display: 'flex', flexDirection: 'column', height: '100%'}}>
                 <NavBar
-                rightContent={<Icon onClick={this.navSettings} type='ellipsis'/>}
+                rightContent={
+                    <Popover 
+                    mask
+                    overlayClassName="fortest"
+                    overlayStyle={{ color: 'currentColor' }}
+                    visible={this.state.visible}
+                    overlay={[
+                      (<Item key="1" value="addDish">添加菜单</Item>),
+                      (<Item key="2" value="addType">添加分类</Item>),
+                      (<Item key="3" value="settings">设置</Item>),
+                    ]}
+                    align={{
+                      overflow: { adjustY: 0, adjustX: 0 },
+                      offset: [-10, 0],
+                    }}
+                    onSelect={this.onSelect}>
+                        <div style={{
+                          height: '100%',
+                          padding: '0 15px',
+                          marginRight: '-15px',
+                          display: 'flex',
+                          alignItems: 'center',
+                        }}>
+                            <Icon type="ellipsis" />
+                        </div>
+                    </Popover>
+                }
                 >{this.props.userinfo.nickname || '商家用户001'}</NavBar>
 
                 <div style = {{flex: 1}}>

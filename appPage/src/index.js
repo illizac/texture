@@ -11,6 +11,8 @@ import Register from './pages/register.jsx'
 import Login from './pages/login.jsx'
 import Home from './pages/index.jsx'
 import Settings from './pages/settings.jsx'
+import TypeList from './pages/typeList.jsx'
+import TypeForm from './pages/typeForm.jsx'
 
 const routeConfig = (
 	<Route path = {'/'} component = {Page}>
@@ -19,6 +21,8 @@ const routeConfig = (
 		<Route path = {'/login'} component = {Login} />
 		<Route path = {'/home'} component = {Home} />
 		<Route path = {'/settings'} component = {Settings} />
+		<Route path = {'/typeList'} component = {TypeList} />
+		<Route path = {'/typeForm'} component = {TypeForm} />
 	</Route>
 )
 

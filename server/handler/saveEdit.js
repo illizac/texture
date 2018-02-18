@@ -1,4 +1,5 @@
 var conn = require('../../sql/sqlconf')
+	resfunc = require('../handlerTool/responseFunc')
 
 module.exports = (req, response, param) => {
 

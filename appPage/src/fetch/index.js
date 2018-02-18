@@ -17,3 +17,9 @@ export const register = param => fetch(handleParam('register', param)).then(res 
 export const login = param => fetch(handleParam('login', param)).then(res => res.json())
 
 export const save = param => fetch(handleParam('saveEdit', param)).then(res => res.json())
+
+export const getType = param => fetch(handleParam('getType', param)).then(res => res.json())
+
+export const editType = param => fetch(handleParam('editType', param)).then(res => res.json())
+
+export const deleteType = param => fetch(handleParam('deleteType', param)).then(res => res.json())

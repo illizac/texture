@@ -1,12 +1,16 @@
-const index = require('./handler/index')
-	register = require('./handler/register')
+const register = require('./handler/register')
 	login = require('./handler/login')
 	saveEdit = require('./handler/saveEdit')
+	getType = require('./handler/getType')
+	editType = require('./handler/editType')
+	deleteType = require('./handler/deleteType')
 
 
 module.exports = {
-	index,
 	register,
 	login,
-	saveEdit
+	saveEdit,
+	getType,
+	editType,
+	deleteType
 }

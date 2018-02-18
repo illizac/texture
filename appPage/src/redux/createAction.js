@@ -10,3 +10,12 @@ export const SAVECOMPLETE = 'SAVECOMPLETE'
 export const STARTLOADING = 'STARTLOADING'
 export const ENDLOADING = 'ENDLOADING'
 
+export const GETTYPE = 'GETTYPE'
+export const GETTYPESUCCESS = 'GETTYPESUCCESS'
+
+export const TYPEEDIT = 'TYPEEDIT'
+
+export const EDITTYPE = 'EDITTYPE'
+
+export const DELETETYPE = 'DELETETYPE'
+
