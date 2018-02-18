@@ -28,7 +28,7 @@ class DishList extends React.Component{
 
     toAdd = type => {
         this.props.dishedit(type == 'add' ? {} : type)
-        // hashHistory.push('/typeForm')
+        hashHistory.push('/dishForm')
     }
 
     render() {

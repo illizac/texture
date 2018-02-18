@@ -32,7 +32,7 @@ class TypeForm extends React.Component{
     tpchange = val => this.setState({type: val})
 
     editType = _ => {
-        if(this.props.userinfo.id){
+        if(this.props.userinfo.id && this.state.type){
             let obj = {
                 userid: this.props.userinfo.id,
                 typename: this.state.type
@@ -43,6 +43,8 @@ class TypeForm extends React.Component{
                 })
             }
             this.props.edit(obj)
+        }else{
+            Toast.info('请输入完整信息')
         }
     }
 

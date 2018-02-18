@@ -14,6 +14,7 @@ import Settings from './pages/settings.jsx'
 import TypeList from './pages/typeList.jsx'
 import TypeForm from './pages/typeForm.jsx'
 import DishList from './pages/dishList.jsx'
+import DishForm from './pages/dishForm.jsx'
 
 const routeConfig = (
 	<Route path = {'/'} component = {Page}>
@@ -25,6 +26,7 @@ const routeConfig = (
 		<Route path = {'/typeList'} component = {TypeList} />
 		<Route path = {'/typeForm'} component = {TypeForm} />
 		<Route path = {'/dishList'} component = {DishList} />
+		<Route path = {'/dishForm'} component = {DishForm} />
 	</Route>
 )
 

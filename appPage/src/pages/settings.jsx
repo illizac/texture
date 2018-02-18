@@ -26,7 +26,7 @@ class Settings extends React.Component{
     }
 
     componentWillReceiveProps(n){
-        if(n.userinfo != this.state.userinfo){
+        if(n.userinfo != this.props.userinfo){
             this.setState({editstate: true})
         }
     }
