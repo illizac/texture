@@ -24,3 +24,7 @@ export const GETDISHCOMPLETE = 'GETDISHCOMPLETE'
 
 export const DISHEDIT = 'DISHEDIT'
 
+export const EDITDISH = 'EDITDISH'
+
+export const DELETEDISH = 'DELETEDISH'
+

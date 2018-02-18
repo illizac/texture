@@ -77,20 +77,6 @@ function* getType(){
 	})
 }
 
-function* getDishes(){
-	yield takeLatest(ACTION.GETDISH, function* (action){
-		Toast.loading('Loading...', 0, _ => {})
-		let data = yield call(fetchApi.getDishes, action.param)
-		if(data.code == 200){
-			yield put({type: ACTION.GETDISHCOMPLETE, data: JSON.parse(data.data)})
-		}else{
-			Toast.Info('获取菜单失败')
-		}
-		yield delay(500)
-		Toast.hide()
-	})
-}
-
 
 function* editType(){
 	yield takeLatest(ACTION.EDITTYPE, function* (action){
@@ -130,6 +116,56 @@ function* deleteType(){
 	})
 }
 
+
+
+
+function* getDishes(){
+	yield takeLatest(ACTION.GETDISH, function* (action){
+		Toast.loading('Loading...', 0, _ => {})
+		let data = yield call(fetchApi.getDishes, action.param)
+		if(data.code == 200){
+			yield put({type: ACTION.GETDISHCOMPLETE, data: JSON.parse(data.data)})
+		}else{
+			Toast.Info('获取菜单失败')
+		}
+		yield delay(500)
+		Toast.hide()
+	})
+}
+function* editDish(){
+	yield takeLatest(ACTION.EDITDISH, function* (action){
+		yield put({type: ACTION.STARTLOADING})
+		let data = yield call(fetchApi.editDish, action.param)
+		switch(data.code){
+			case 200: 
+				Toast.info('操作成功')
+				yield delay(500)
+				hashHistory.goBack()
+				break
+			default: 
+				Toast.info('操作失败')
+				break
+		}
+		yield delay(300)
+		yield put({type: ACTION.ENDLOADING})
+	})
+}
+function* deleteDish(){
+	yield takeLatest(ACTION.DELETEDISH, function* (action){
+		let data = yield call(fetchApi.deleteDish, action.param)
+		switch(data.code){
+			case 200: 
+				Toast.info('删除成功')
+				yield delay(500)
+				hashHistory.goBack()
+				break
+			default: 
+				Toast.info('删除失败')
+				break
+		}
+	})
+}
+
 export function* fetchSaga(){
 	yield fork(register)
 	yield fork(login)
@@ -138,6 +174,8 @@ export function* fetchSaga(){
 	yield fork(editType)
 	yield fork(deleteType)
 	yield fork(getDishes)
+	yield fork(editDish)
+	yield fork(deleteDish)
 }
 
 

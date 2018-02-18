@@ -5,6 +5,8 @@ const register = require('./handler/register')
 	editType = require('./handler/editType')
 	deleteType = require('./handler/deleteType')
 	getDishes = require('./handler/getDishes')
+	editDish = require('./handler/editDish')
+	deleteDish = require('./handler/deleteDish')
 
 
 module.exports = {
@@ -14,5 +16,7 @@ module.exports = {
 	getType,
 	editType,
 	deleteType,
-	getDishes
+	getDishes,
+	editDish,
+	deleteDish
 }

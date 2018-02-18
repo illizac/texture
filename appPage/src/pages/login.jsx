@@ -22,7 +22,6 @@ class Login extends Register{
 
     handleSubmit = _ => {
         if(this.state.username && this.state.password){
-            console.log(this.state.username)
             if(!this.state.passError && !this.state.userError){
                 this.props.login({username: this.state.username.replace(/\s+/g, ""), password: this.state.password})
             }else{

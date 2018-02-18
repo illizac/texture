@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { hashHistory } from 'react-router'
 import { WhiteSpace, NavBar, Icon, WingBlank, InputItem, Button, Toast, Picker, List } from 'antd-mobile'
-import { GETTYPE } from '../redux/createAction'
+import { GETTYPE, EDITDISH, DELETEDISH } from '../redux/createAction'
 
 @connect(state => ({
     userinfo: state.global.userinfo,
@@ -13,6 +13,8 @@ import { GETTYPE } from '../redux/createAction'
     getType(param = {}){
         dispath({ type: GETTYPE, param })
     },
+    deleteDish(param = {}){dispath({type: DELETEDISH, param})},
+    edit(param = {}){dispath({type: EDITDISH, param})}
 }))
 class DishForm extends React.Component{
     constructor(props){super(props)}
@@ -64,17 +66,16 @@ class DishForm extends React.Component{
                     id: this.props.dishiteminfo.id
                 })
             }
-            console.log(obj)
-            // this.props.edit(obj)
+            this.props.edit(obj)
         }else{
             Toast.info('请输入完整信息')
         }
     }
 
     delete = _ => {
-        // if(this.props.dishiteminfo.id){
-        //     this.props.deleteType({id: this.props.dishiteminfo.id})
-        // }
+        if(this.props.dishiteminfo.id){
+            this.props.deleteDish({id: this.props.dishiteminfo.id})
+        }
     }
 
     render() {
@@ -94,7 +95,7 @@ class DishForm extends React.Component{
                     <InputItem 
                     value={this.state.price}
                     clear
-                    type='number'
+                    type='digit'
                     placeholder='请输入菜品价格'
                     extra="元"
                     onChange={val => this.setState({price: val})} />
@@ -103,11 +104,7 @@ class DishForm extends React.Component{
                         <Picker 
                         data={this.state.typelist} 
                         value={this.state.typeid}
-                        onChange={val => {
-                            console.log(val)
-                            this.setState({typeid: val})
-                        }
-                        }
+                        onChange={ val => this.setState({typeid: val}) }
                         cols={1}>
                             <List.Item arrow="horizontal">选择分类</List.Item>
                         </Picker>
