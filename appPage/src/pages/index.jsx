@@ -5,6 +5,9 @@ import { WhiteSpace, Toast, NavBar, Icon, TabBar, Popover } from 'antd-mobile'
 const Item = Popover.Item
 import {  } from '../redux/createAction'
 
+import OrderList from './orderList.jsx'
+import CompleteList from './completeList.jsx'
+
 @connect(state => ({
     userinfo: state.global.userinfo
 }), dispath => ({
@@ -44,6 +47,7 @@ class Home extends React.Component{
         return (
             <div style={{display: 'flex', flexDirection: 'column', height: '100%'}}>
                 <NavBar
+                style={{height: 45}}
                 rightContent={
                     <Popover 
                     mask
@@ -72,40 +76,38 @@ class Home extends React.Component{
                     </Popover>
                 }
                 >{this.props.userinfo.nickname || '商家用户001'}</NavBar>
-
-                <div style = {{flex: 1}}>
-                    <TabBar
-                    unselectedTintColor="#949494"
-                    tintColor="#33A3F4"
-                    barTintColor="white">
-                        <TabBar.Item
-                        icon={<i class="iconfont">&#xe89a;</i>}
-                        selectedIcon={<i class="iconfont">&#xe89b;</i>}
-                        title="未完成订单"
-                        key="none"
-                        selected={this.state.selectedTab === 'none'}
-                        onPress={() => {
-                            this.setState({
-                                selectedTab: 'none',
-                            });
-                        }}>{
-                            111
-                        }</TabBar.Item>
-                        <TabBar.Item
-                        icon={<i class="iconfont">&#xe891;</i>}
-                        selectedIcon={<i class="iconfont">&#xe892;</i>}
-                        title="已完成订单"
-                        key="done"
-                        selected={this.state.selectedTab === 'done'}
-                        onPress={() => {
-                            this.setState({
-                                selectedTab: 'done',
-                            });
-                        }}>{
-                            222
-                        }</TabBar.Item>
-                    </TabBar>
-                </div>
+                <TabBar
+                style={{flex: 1}}
+                unselectedTintColor="#949494"
+                tintColor="#33A3F4"
+                barTintColor="white">
+                    <TabBar.Item
+                    icon={<i class="iconfont">&#xe89a;</i>}
+                    selectedIcon={<i class="iconfont">&#xe89b;</i>}
+                    title="未完成订单"
+                    key="none"
+                    selected={this.state.selectedTab === 'none'}
+                    onPress={() => {
+                        this.setState({
+                            selectedTab: 'none',
+                        });
+                    }}>{
+                        <OrderList />
+                    }</TabBar.Item>
+                    <TabBar.Item
+                    icon={<i class="iconfont">&#xe891;</i>}
+                    selectedIcon={<i class="iconfont">&#xe892;</i>}
+                    title="已完成订单"
+                    key="done"
+                    selected={this.state.selectedTab === 'done'}
+                    onPress={() => {
+                        this.setState({
+                            selectedTab: 'done',
+                        });
+                    }}>{
+                        <CompleteList />
+                    }</TabBar.Item>
+                </TabBar>
             </div>
         )
     }

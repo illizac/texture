@@ -30,3 +30,9 @@ export const editDish = param => fetch(handleParam('editDish', param)).then(res 
 
 export const deleteDish = param => fetch(handleParam('deleteDish', param)).then(res => res.json())
 
+export const getOrder = param => fetch(handleParam('getOrder', param)).then(res => res.json())
+
+export const editOrder = param => fetch(handleParam('editOrder', param)).then(res => res.json())
+
+export const getComplete = param => fetch(handleParam('getComplete', param)).then(res => res.json())
+

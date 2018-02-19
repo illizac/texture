@@ -166,6 +166,79 @@ function* deleteDish(){
 	})
 }
 
+
+//----------------------------------------------------------------------------------------------------------------//
+
+function* getOrder(){
+	yield takeLatest(ACTION.GETORDER, function*(action){
+		// action.param.refresh ? 
+		yield put({type: ACTION.STARTLOADING}) 
+		// : Toast.loading('Loading...', 0, _ => {})
+
+		let data = yield call(fetchApi.getOrder, action.param)
+		switch(data.code){
+			case 200: 
+				yield put({type: ACTION.GETORDERCOMPLETE, data: JSON.parse(data.data)})
+				break
+			default: 
+				Toast.info('获取失败')
+				break
+		}
+
+		yield delay(500)
+		// action.param.refresh ? 
+		yield put({type: ACTION.ENDLOADING}) 
+		// : Toast.hide()
+	})
+}
+
+function* editOrder(){
+	yield takeLatest(ACTION.EDITORDER, function*(action){
+		yield put({type: ACTION.STARTLOADING})
+		let data = yield call(fetchApi.editOrder, action.param)
+		switch(data.code){
+			case 200: 
+				Toast.info('操作成功')
+				yield delay(500)
+				yield put({type: ACTION.GETORDER, param: {id: action.param.id}})
+				break
+			default: 
+				Toast.info('操作失败')
+				break
+		}
+		yield delay(300)
+		yield put({type: ACTION.ENDLOADING})
+	})
+}
+
+
+function* getComplete(){
+	yield takeLatest(ACTION.GETCOMPLETE, function*(action){
+		// action.param.refresh ? 
+		yield put({type: ACTION.STARTLOADING})
+		 // : Toast.loading('Loading...', 0, _ => {})
+
+		let data = yield call(fetchApi.getComplete, action.param)
+		switch(data.code){
+			case 200: 
+				yield put({type: ACTION.GETCOMPLETEDONE, data: JSON.parse(data.data)})
+				break
+			default: 
+				Toast.info('获取失败')
+				break
+		}
+
+		yield delay(500)
+		// action.param.refresh ? 
+		yield put({type: ACTION.ENDLOADING}) 
+		// : Toast.hide()
+	})
+}
+
+
+
+
+
 export function* fetchSaga(){
 	yield fork(register)
 	yield fork(login)
@@ -176,6 +249,10 @@ export function* fetchSaga(){
 	yield fork(getDishes)
 	yield fork(editDish)
 	yield fork(deleteDish)
+	//
+	yield fork(getOrder)
+	yield fork(editOrder)
+	yield fork(getComplete)
 }
 
 

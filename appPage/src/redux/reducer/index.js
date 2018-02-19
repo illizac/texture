@@ -9,6 +9,8 @@ import { REGISTER,
 		 TYPEEDIT,
 		 GETDISHCOMPLETE,
 		 DISHEDIT,
+		 GETORDERCOMPLETE,
+		 GETCOMPLETEDONE,
 		 SAVECOMPLETE } from '../createAction'
 
 const GlobalDataStructure = { 
@@ -17,7 +19,9 @@ const GlobalDataStructure = {
 	typelist: [],
 	dishlist: [],
 	typeeditinfo: {},
-	dishiteminfo: {}
+	dishiteminfo: {},
+	orderlist: [],
+	completeList: []
 }
 
 const globalReducer = (state = GlobalDataStructure, action) => {
@@ -30,6 +34,14 @@ const globalReducer = (state = GlobalDataStructure, action) => {
 
 		case GETDISHCOMPLETE: return Assign(state, { dishlist: action.data })
 		case DISHEDIT: return Assign(state, { dishiteminfo: action.data })
+
+		//----------------------------------------------------------------------------------//
+
+		case GETORDERCOMPLETE: return Assign(state, { orderlist: action.data })
+
+		case GETCOMPLETEDONE: return Assign(state, { completeList: action.data })
+
+		//----------------------------------------------------------------------------------//
 
 		case STARTLOADING: return Assign(state, { loading: true })
 		case ENDLOADING: return Assign(state, {loading: false})
