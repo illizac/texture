@@ -70,7 +70,7 @@ class Register extends React.Component{
 
     back = _ => hashHistory.goBack()
 
-    renderTitle = _ => '账号注册'
+    renderTitle = _ => '用户注册'
 
     render() {
         return (

@@ -34,6 +34,9 @@ class Home extends React.Component{
             case 'settings':
                 hashHistory.push('/settings')
                 break
+            case 'qrcode':
+                hashHistory.push('/qrcode')
+                break
             default: 
                 break
         }
@@ -58,6 +61,7 @@ class Home extends React.Component{
                       (<Item key="1" value="addDish">添加菜单</Item>),
                       (<Item key="2" value="addType">添加分类</Item>),
                       (<Item key="3" value="settings">设置</Item>),
+                      (<Item key="4" value="qrcode">二维码</Item>),
                     ]}
                     align={{
                       overflow: { adjustY: 0, adjustX: 0 },

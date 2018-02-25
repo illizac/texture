@@ -15,6 +15,7 @@ import TypeList from './pages/typeList.jsx'
 import TypeForm from './pages/typeForm.jsx'
 import DishList from './pages/dishList.jsx'
 import DishForm from './pages/dishForm.jsx'
+import Qrcode from './pages/qrcode.jsx'
 
 const routeConfig = (
 	<Route path = {'/'} component = {Page}>
@@ -27,6 +28,7 @@ const routeConfig = (
 		<Route path = {'/typeForm'} component = {TypeForm} />
 		<Route path = {'/dishList'} component = {DishList} />
 		<Route path = {'/dishForm'} component = {DishForm} />
+		<Route path = {'/qrcode'} component = {Qrcode} />
 	</Route>
 )
 

@@ -32,6 +32,7 @@
     "less-loader": "^4.0.5",
     "mysql": "^2.15.0",
     "path": "^0.12.7",
+    "qrcode.react": "^0.8.0",
     "rc-form": "^2.1.7",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
