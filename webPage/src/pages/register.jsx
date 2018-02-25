@@ -24,24 +24,18 @@ class Register extends React.Component{
     state = {
         username: '',
         password: '',
-        tablenum: '',
-        nickname: '',
         passError: false,
-        userError: false,
-        tbError: false,
-        nickError: false
+        userError: false
     }
 
     handleSubmit = _ => {
-        if(this.state.tablenum == '' || this.state.username == '' || this.state.password == '' || this.state.nickname == ''){
+        if(this.state.username == '' || this.state.password == ''){
             Toast.info('请输入必要信息')
         }else{
-            if(!this.state.passError && !this.state.userError && !this.state.tbError && !this.state.nickError){
+            if(!this.state.passError && !this.state.userError){
                 this.props.register({
                     username: this.state.username.replace(/\s+/g, ""), 
                     password: this.state.password, 
-                    tablenum: this.state.tablenum,
-                    nickname: this.state.nickname
                 })
             }else{
                 Toast.info('请填写正确信息注册')
@@ -58,16 +52,6 @@ class Register extends React.Component{
         this.setFunc(val, val => /^[0-9a-zA-Z]{6,16}$/.test(val), 'passError', 'password')
     }
 
-    tbChange = val => {
-        this.setFunc(val, val => String(val).length > 0, 'tbError', 'tablenum')
-    }
-
-    nickChange = val => {
-        this.setFunc(val, val => {
-            let l = String(val).length
-            return l >= 1 && l <= 16
-        }, 'nickError', 'nickname')
-    }
 
     setFunc = (val, regFunc, err, param) => {
         let obj = {}
@@ -94,7 +78,7 @@ class Register extends React.Component{
                 <NavBar
                 mode='light'
                 leftContent={<Icon onClick={this.back} type='left'/>}
-                >{'商家注册'}</NavBar>
+                >{'用户注册'}</NavBar>
                 <WingBlank>
                     <img 
                     style={{width: 150, height: 150, display: 'block', margin: '0 auto'}}
@@ -115,18 +99,6 @@ class Register extends React.Component{
                         placeholder='手机号'>手机号</InputItem>
 
                         <InputItem 
-                        value={this.state.nickname}
-                        onErrorClick={_ => {
-                            if (this.state.nickError) {
-                                Toast.info('请输入16位以下用户名');
-                            }
-                        }}
-                        clear
-                        error={this.state.nickError}
-                        placeholder='请输入用户名'
-                        onChange={this.nickChange}>用户名</InputItem>
-
-                        <InputItem 
                         value={this.state.password}
                         onErrorClick={_ => {
                             if (this.state.passError) {
@@ -138,18 +110,6 @@ class Register extends React.Component{
                         onChange={this.onPassChange}
                         placeholder='请输入密码'
                         type='password'>密码</InputItem>
-                        <InputItem 
-                        value={this.state.tablenum}
-                        onErrorClick={_ => {
-                            if (this.state.tbError) {
-                                Toast.info('请输入餐桌数量');
-                            }
-                        }}
-                        clear
-                        error={this.state.tbError}
-                        placeholder='请输入餐桌数量'
-                        onChange={this.tbChange}
-                        type='number'>餐桌数</InputItem>
                     </List>
                     <WhiteSpace/>
                     <Button type="primary" onClick={this.handleSubmit}>注册</Button>

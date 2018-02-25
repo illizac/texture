@@ -1,16 +1,16 @@
 var conn = require('../../sql/sqlconf')
-	repeatUser = require('../handlerTool/repeatUser')
+	repeatCustom = require('../handlerTool/repeatCustom')
 	resfunc = require('../handlerTool/responseFunc')
 
 module.exports = (req, response, param) => {
 
-	repeatUser(param.username)
+	repeatCustom(param.username)
 	.then(val => 
 		new Promise((resolve, reject) => {
 			if(val.length > 0){
 				reject('username repeat')
 			}else{
-				conn.query(`INSERT INTO user(username,password,nickname,tablenum) VALUES("${param.username}","${param.password}","${param.nickname || '商家用户'}",${param.tablenum || 0})`, function(err, result){
+				conn.query(`INSERT INTO custom(username,password) VALUES("${param.username}","${param.password}")`, function(err, result){
 					if(err) reject(err)
 
 					resolve(result)

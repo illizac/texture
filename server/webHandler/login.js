@@ -1,9 +1,10 @@
 var conn = require('../../sql/sqlconf')
+	repeatCustom = require('../handlerTool/repeatCustom')
 	resfunc = require('../handlerTool/responseFunc')
-
+	
 module.exports = (req, response, param) => {
 
-	repeatUser(param.username)
+	repeatCustom(param.username)
 	.then(val => 
 		new Promise((resolve, reject) => {
 			if(val.length == 0){
@@ -11,7 +12,7 @@ module.exports = (req, response, param) => {
 			}else if(val[0].password != param.password){
 				reject('pass wrong')
 			}else{
-				conn.query(`SELECT * FROM user WHERE username=${param.username} AND password=${param.password}`, function(err, result){
+				conn.query(`SELECT * FROM custom WHERE username=${param.username} AND password=${param.password}`, function(err, result){
 					if(err) reject(err)
 
 					resolve(result)

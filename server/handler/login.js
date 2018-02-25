@@ -1,6 +1,8 @@
 var conn = require('../../sql/sqlconf')
 	resfunc = require('../handlerTool/responseFunc')
+	repeatUser = require('../handlerTool/repeatUser')
 
+	
 module.exports = (req, response, param) => {
 
 	repeatUser(param.username)
