@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { hashHistory } from 'react-router'
 import { createForm } from 'rc-form'
 import { Button, WingBlank, InputItem, List, WhiteSpace, Toast } from 'antd-mobile'
-import { fishlogo } from '../assets/images/image'
+import { fishlogo, logo } from '../assets/images/image'
 import { LOGIN } from '../redux/createAction'
 
 import Register from './register.jsx'

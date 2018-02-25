@@ -1,9 +1,8 @@
 import fetch from 'isomorphic-fetch'
-
-const baseUrl = 'http://192.168.0.102:8098'
+import { baseUrl } from '../../baseConf'
 
 const handleParam = (url, param) => {
-	let str = `${baseUrl}/${url}?`
+	let str = `${baseUrl}/app/${url}?`
 	for(let i in param){
 		str += `${i}=${param[i]}&`
 	}

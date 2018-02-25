@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/index.js",
-    "build": "webpack --config appPage/webpack-config.js --watch"
+    "abuild": "webpack --config appPage/webpack-config.js --watch",
+    "wbuild": "webpack --config webPage/webpack-config.js --watch"
   },
   "author": "",
   "license": "ISC",

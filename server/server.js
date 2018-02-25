@@ -5,12 +5,21 @@ var http = require('http')
 	fsload = require('./fsload')
 	querystring = require('querystring')
 
-var baseUrl = './appPage/dist'
+var baseUrl
 
 var server = (router, handle) => {
 	var func = (req, res) => {
 		var pathname = url.parse(req.url).pathname
-		pathname = pathname === '/' ? '/index.html' : pathname
+
+		if( pathname == '/a' || pathname.indexOf('/a/') == 0 || pathname == '/' ){
+			pathname = pathname == '/a' || pathname == '/' ? '/index.html' : pathname
+			baseUrl = './appPage/dist'
+		}else if( pathname == '/w' || pathname.indexOf('/w/') == 0 ){
+			pathname = pathname == '/w' ? '/index.html' : pathname
+			baseUrl = './webPage/dist'
+		}
+
+
 		//parse param
 		var paramStr = url.parse(req.url).query
 		var param = querystring.parse(paramStr)
