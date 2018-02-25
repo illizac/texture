@@ -14,7 +14,7 @@ import { REGISTER,
 		 SAVECOMPLETE } from '../createAction'
 
 const GlobalDataStructure = { 
-	userinfo: {},
+	userinfo: localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo'))[0] : {},
 	loading: false,
 	typelist: [],
 	dishlist: [],

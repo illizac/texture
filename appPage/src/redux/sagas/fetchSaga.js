@@ -5,6 +5,8 @@ import { Toast } from 'antd-mobile'
 import * as fetchApi from '../../fetch'
 import * as ACTION from '../createAction'
 
+import { gd, cd } from '../../fetch/toolApi'
+
 function* register(){
 	yield takeLatest(ACTION.REGISTER, function* (action){
 		let data = yield call(fetchApi.register, action.param)
@@ -29,6 +31,8 @@ function* login(){
 		switch(data.code){
 			case 200: 
 				Toast.info('登录成功')
+				localStorage.setItem('userInfo', data.data)
+				localStorage.setItem('time', gd(2))
 				yield put({type: ACTION.LOGINCOMPLETE, data: JSON.parse(data.data)})
 				hashHistory.replace('/home')
 				break

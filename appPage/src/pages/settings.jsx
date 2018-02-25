@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { hashHistory } from 'react-router'
 import { WhiteSpace, Toast, NavBar, Icon, TabBar, List, InputItem, Button, WingBlank } from 'antd-mobile'
-import { SAVECHANGES } from '../redux/createAction'
+import { SAVECHANGES, RESET } from '../redux/createAction'
 
 @connect(state => ({
     userinfo: state.global.userinfo,
@@ -13,7 +13,8 @@ import { SAVECHANGES } from '../redux/createAction'
             type: SAVECHANGES,
             param
         })
-    }
+    },
+    exit(){dispath({type: RESET})}
 }))
 class Settings extends React.Component{
     constructor(props){super(props)}
@@ -90,7 +91,14 @@ class Settings extends React.Component{
 
     back = _ => hashHistory.goBack()
 
-    exit = _ => {}
+    exit = _ => {
+        localStorage.clear()
+        setTimeout(_ => {
+            this.props.exit()
+            hashHistory.replace('/login')
+            Toast.info('退出成功')
+        }, 300)
+    }
 
 
     render() {

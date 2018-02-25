@@ -18,6 +18,7 @@ class OrderList extends React.Component{
     constructor(props){super(props)}
 
     componentWillMount(){
+        console.log(this.props.userinfo)
         if(this.props.userinfo.id){
             this.props.getorder({id: this.props.userinfo.id, state: 2, refresh: false})
         }
