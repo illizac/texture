@@ -11,6 +11,8 @@ import { REGISTER,
 		 DISHEDIT,
 		 GETORDERCOMPLETE,
 		 GETCOMPLETEDONE,
+		 SETHEIGHT,
+		 SETCOMPHEIGHT,
 		 SAVECOMPLETE } from '../createAction'
 
 const GlobalDataStructure = { 
@@ -21,7 +23,9 @@ const GlobalDataStructure = {
 	typeeditinfo: {},
 	dishiteminfo: {},
 	orderlist: [],
-	completeList: []
+	completeList: [],
+	height: 'auto',
+	compHeight: 'auto'
 }
 
 const globalReducer = (state = GlobalDataStructure, action) => {
@@ -45,6 +49,9 @@ const globalReducer = (state = GlobalDataStructure, action) => {
 
 		case STARTLOADING: return Assign(state, { loading: true })
 		case ENDLOADING: return Assign(state, {loading: false})
+
+		case SETHEIGHT: return Assign(state, {height: action.data})
+		case SETCOMPHEIGHT: return Assign(state, {compHeight: action.data})
 
 		case RESET: return GlobalDataStructure
 

@@ -86,6 +86,7 @@ class Home extends React.Component{
                 tintColor="#33A3F4"
                 barTintColor="white">
                     <TabBar.Item
+                    ref='test'
                     icon={<i class="iconfont">&#xe89a;</i>}
                     selectedIcon={<i class="iconfont">&#xe89b;</i>}
                     title="未完成订单"
