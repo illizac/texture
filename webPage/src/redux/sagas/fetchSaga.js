@@ -47,12 +47,33 @@ function* login(){
 	})
 }
 
+function* getDish(){
+	yield takeLatest(ACTION.GETDISH, function* (action){
+		// yield put({type: STARTLOADING})
+		Toast.loading('Loading...')
+		let data = yield call(fetchApi.getDish, action.param)
+		switch(data.code){
+			case 200: 
+				yield put({type: ACTION.GETDISH_COMPLETE, data: JSON.parse(data.data)})
+				document.title = JSON.parse(data.data).nickname
+				break
+			default: 
+				Toast.info('获取失败，请重试')
+				break
+		}
+
+		yield delay(300)
+		Toast.hide()
+	})
+}
+
 
 
 
 export function* fetchSaga(){
 	yield fork(register)
 	yield fork(login)
+	yield fork(getDish)
 
 }
 

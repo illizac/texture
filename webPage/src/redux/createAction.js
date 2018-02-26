@@ -10,3 +10,7 @@ export const SAVECOMPLETE = 'SAVECOMPLETE'
 export const STARTLOADING = 'STARTLOADING'
 export const ENDLOADING = 'ENDLOADING'
 
+
+export const GETDISH = 'GETDISH'
+export const GETDISH_COMPLETE = 'GETDISH_COMPLETE'
+

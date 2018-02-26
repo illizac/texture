@@ -13,7 +13,7 @@ import Home from './pages/index.jsx'
 
 const routeConfig = (
 	<Route path = {'/'} component = {Page}>
-		<IndexRedirect to="/login" />
+		<IndexRedirect to="/home" />
 		<Route path = {'/register'} component = {Register} />
 		<Route path = {'/login'} component = {Login} />
 		<Route path = {'/home'} component = {Home} />

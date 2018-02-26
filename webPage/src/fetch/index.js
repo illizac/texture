@@ -15,4 +15,6 @@ export const register = param => fetch(handleParam('register', param)).then(res 
 
 export const login = param => fetch(handleParam('login', param)).then(res => res.json())
 
+export const getDish = param => fetch(handleParam('getDish', param)).then(res => res.json())
+
 
