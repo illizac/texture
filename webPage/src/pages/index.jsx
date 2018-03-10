@@ -5,6 +5,7 @@ import { WhiteSpace, Toast, NavBar, Icon, TabBar, Popover, Tabs, Badge } from 'a
 const Item = Popover.Item
 import { GETDISH } from '../redux/createAction'
 import { qs } from '../fetch/toolApi'
+import { antilogo, aflogo } from '../assets/images/image'
 
 @connect(state => ({
     dishinfo: state.global.dishinfo,
@@ -83,7 +84,11 @@ class Home extends React.Component{
         })
     }
 
-    onSubmit = _ => console.log(this.state.dishList)
+    onSubmit = _ => {
+        if(this.state.dishList.length){
+            console.log(this.state.dishList)
+        }
+    }
 
     render() {
         return (
@@ -107,15 +112,15 @@ class Home extends React.Component{
                                                         <i 
                                                         class='iconfont' 
                                                         onClick={_ => this.cutDish(val)}
-                                                        style={{color: 'rgb(33, 127, 255)', fontSize: 20, display: 'block'}}>&#xe619;</i>
+                                                        style={{color: 'rgb(33, 127, 255)', fontSize: 20, display: 'block', padding: '0 15px'}}>&#xe619;</i>
                                                      : ''}
                                                     {val.count ? 
-                                                        <span style={{padding: '0 15px'}} >{val.count}</span>
+                                                        <span>{val.count}</span>
                                                      : ''}
                                                     <i 
                                                     class='iconfont' 
                                                     onClick={_ => this.addDish(val)}
-                                                    style={{color: 'rgb(33, 127, 255)', fontSize: 20, display: 'block'}}>&#xe60d;</i>
+                                                    style={{color: 'rgb(33, 127, 255)', fontSize: 20, display: 'block', padding: '0 0 0 15px'}}>&#xe60d;</i>
                                                 </span>
                                             </div>
                                         </div>
@@ -130,13 +135,13 @@ class Home extends React.Component{
                     </Tabs>
                </div>
                <div style={{height: 50, background: 'rgb(72,71,72)', color: '#fff', display: 'flex'}}>
-                   <div style={{flex: 1, overflow: 'hidden', display: 'flex', alignItems: 'center'}}>
+                   <div style={{flex: 1, display: 'flex', alignItems: 'center'}}>
                         <div style={{width: 40, paddingLeft: 15}}>
                             <Badge text={this.state.count}>
-                                <span style={{ width: '26px', height: '26px', background: '#ddd', display: 'inline-block' }} />
+                                <img src = {this.state.dishList.length ? aflogo : antilogo} style={{ width: 50, height: 50, transform: 'translate(0, -6px)' }} />
                             </Badge>
                         </div>
-                        <div style={{flex: 1, display: 'flex', paddingLeft: 15, alignItems: 'center'}}>{
+                        <div style={{flex: 1, display: 'flex', paddingLeft: 25, alignItems: 'center', fontWeight: 'bold'}}>{
                             this.state.dishList.length == 0 ? <span style={{color: 'rgb(140,140,140)'}}>未选购商品</span> : `¥ ${this.state.price}`
                         }</div>
                    </div>
