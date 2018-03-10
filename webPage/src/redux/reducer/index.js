@@ -10,7 +10,10 @@ import { REGISTER,
 const GlobalDataStructure = { 
 	userinfo: {},
 	loading: false,
-	dishinfo: {}
+	dishinfo: {
+		dishes: [],
+		type: [{title: 'default'}]
+	}
 }
 
 const globalReducer = (state = GlobalDataStructure, action) => {
