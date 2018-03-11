@@ -11,3 +11,9 @@ web端
 修改appPage/baseConf.js 中的 baseUrl
 
 
+打包web: npm run wbuild
+打包app dist: npm run abuild
+本地服务启动: npm run start
+
+
+
