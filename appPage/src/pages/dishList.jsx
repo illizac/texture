@@ -51,7 +51,7 @@ class DishList extends React.Component{
                                 }</Item>
                             )}
                             <Item onClick={_ => this.toAdd('add')}>
-                                <i class="iconfont" style={{fontSize: 15}}>&#xe647;</i> 添加新菜品
+                                <i className="iconfont icon-add" style={{fontSize: 15}}></i> 添加新菜品
                             </Item>
                         </List>
                     </div>

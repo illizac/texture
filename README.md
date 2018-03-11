@@ -15,5 +15,5 @@ web端
 打包app dist: npm run abuild
 本地服务启动: npm run start
 
-
+app端字体图标： appPage/src/assets/icon/iconfont.css -> appPage/dist
 

@@ -87,8 +87,8 @@ class Home extends React.Component{
                 barTintColor="white">
                     <TabBar.Item
                     ref='test'
-                    icon={<i class="iconfont">&#xe89a;</i>}
-                    selectedIcon={<i class="iconfont">&#xe89b;</i>}
+                    icon={<i className="iconfont icon-danju-xianxing"></i>}
+                    selectedIcon={<i className="iconfont icon-danju"></i>}
                     title="未完成订单"
                     key="none"
                     selected={this.state.selectedTab === 'none'}
@@ -100,8 +100,8 @@ class Home extends React.Component{
                         <OrderList />
                     }</TabBar.Item>
                     <TabBar.Item
-                    icon={<i class="iconfont">&#xe891;</i>}
-                    selectedIcon={<i class="iconfont">&#xe892;</i>}
+                    icon={<i className="iconfont icon-qianshoushenpitongguo-xianxing"></i>}
+                    selectedIcon={<i className="iconfont icon-qianshoushenpitongguo"></i>}
                     title="已完成订单"
                     key="done"
                     selected={this.state.selectedTab === 'done'}
