@@ -6,7 +6,7 @@ const splitStr = str => str.split(',')
 module.exports = (req, response, param) => {
 
 	new Promise((resolve, reject) => {
-		const sql = `select group_concat(id) as id,group_concat(dishid) as dishid,group_concat(dishname) as dishname, userid, state,customid,tablenum,group_concat(count) as count from dishorder where userid = ${param.id} and state = 2 group by tablenum`
+		const sql = `select group_concat(id) as id,group_concat(dishid) as dishid,group_concat(dishname) as dishname, userid, state,tablenum,group_concat(count) as count from dishorder where userid = ${param.id} and state = 2 group by tablenum`
 
 		conn.query(sql, function(err, result){
 		  	if(err){
@@ -19,7 +19,6 @@ module.exports = (req, response, param) => {
 		let arr = []
 		for(let i in val){
 			let obj = {
-				customid: val[i].customid,
 				tablenum: val[i].tablenum,
 				userid: val[i].userid,
 				state: val[i].state,

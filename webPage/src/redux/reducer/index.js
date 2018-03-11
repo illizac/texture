@@ -5,6 +5,7 @@ import { REGISTER,
 		 LOGINCOMPLETE,
 		 STARTLOADING,
 		 GETDISH_COMPLETE,
+		 UPDATEDISHLIST,
 		 ENDLOADING } from '../createAction'
 
 const GlobalDataStructure = { 
@@ -13,7 +14,8 @@ const GlobalDataStructure = {
 	dishinfo: {
 		dishes: [],
 		type: [{title: 'default'}]
-	}
+	},
+	dishList: {list: [], price: 0}
 }
 
 const globalReducer = (state = GlobalDataStructure, action) => {
@@ -23,6 +25,8 @@ const globalReducer = (state = GlobalDataStructure, action) => {
 
 		case STARTLOADING: return Assign(state, { loading: true })
 		case ENDLOADING: return Assign(state, {loading: false})
+
+		case UPDATEDISHLIST: return Assign(state, {dishList: action.data})
 
 		case RESET: return GlobalDataStructure
 

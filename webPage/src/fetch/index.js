@@ -18,3 +18,6 @@ export const login = param => fetch(handleParam('login', param)).then(res => res
 export const getDish = param => fetch(handleParam('getDish', param)).then(res => res.json())
 
 
+export const settle = param => fetch(handleParam('settle', param)).then(res => res.json())
+
+

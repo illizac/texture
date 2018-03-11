@@ -1,16 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { hashHistory } from 'react-router'
-import { WhiteSpace, Toast, NavBar, Icon, TabBar, Popover, Tabs, Badge } from 'antd-mobile'
-const Item = Popover.Item
-import { GETDISH } from '../redux/createAction'
+import { WhiteSpace, Toast, NavBar, Icon, TabBar, Tabs, Badge } from 'antd-mobile'
+import { GETDISH, UPDATEDISHLIST } from '../redux/createAction'
 import { qs } from '../fetch/toolApi'
 import { antilogo, aflogo } from '../assets/images/image'
 
 @connect(state => ({
     dishinfo: state.global.dishinfo,
 }), dispath => ({
-    getdish(param = {}){dispath({type: GETDISH, param})}
+    getdish(param = {}){dispath({type: GETDISH, param})},
+    updatedish(data = {}){dispath({type: UPDATEDISHLIST, data})}
 }))
 class Home extends React.Component{
     constructor(props){super(props)}
@@ -33,7 +33,6 @@ class Home extends React.Component{
 
         val.dishid = val.id
 
-        delete val.price
         delete val.typeid
         delete val.id
 
@@ -86,7 +85,11 @@ class Home extends React.Component{
 
     onSubmit = _ => {
         if(this.state.dishList.length){
-            console.log(this.state.dishList)
+            this.props.updatedish({
+                list: this.state.dishList,
+                price: this.state.price
+            })
+            hashHistory.push('/settle')
         }
     }
 

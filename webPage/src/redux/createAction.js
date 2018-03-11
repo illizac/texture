@@ -14,3 +14,8 @@ export const ENDLOADING = 'ENDLOADING'
 export const GETDISH = 'GETDISH'
 export const GETDISH_COMPLETE = 'GETDISH_COMPLETE'
 
+export const UPDATEDISHLIST = 'UPDATEDISHLIST'
+
+
+export const SETTLE = 'SETTLE'
+

@@ -68,12 +68,33 @@ function* getDish(){
 }
 
 
+function* settle(){
+	yield takeLatest(ACTION.SETTLE, function* (action){
+		Toast.loading('Loading...')
+		let data = yield call(fetchApi.settle, action.param)
+		switch(data.code){
+			case 200: 
+				Toast.info('支付成功')
+				hashHistory.replace('/paydone')
+				break
+			default: 
+				Toast.info('支付失败，请稍后再试')
+				break
+		}
+
+		yield delay(300)
+		Toast.hide()
+	})
+}
+
+
 
 
 export function* fetchSaga(){
 	yield fork(register)
 	yield fork(login)
 	yield fork(getDish)
+	yield fork(settle)
 
 }
 
