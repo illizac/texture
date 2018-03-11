@@ -38,20 +38,24 @@ class TypeList extends React.Component{
                 leftContent={<Icon onClick={_ => hashHistory.goBack()} type='left'/>}
                 >{'分类列表'}</NavBar>
 
-                <List renderHeader={() => '分类列表'}>
-                    {this.props.typelist.map((v, k) => 
-                        <Item 
-                        arrow="horizontal" 
-                        key={k}
-                        extra='修改' 
-                        onClick={_ => this.toAdd(v)}>{
-                            v.typename
-                        }</Item>
-                    )}
-                    <Item onClick={_ => this.toAdd('add')}>
-                        <i class="iconfont" style={{fontSize: 15}}>&#xe647;</i> 添加新分类
-                    </Item>
-                </List>
+                <div style={{flex: 1, overflow: 'hidden'}}>
+                    <div style={{overflow: 'auto', height: '100%'}}>
+                        <List renderHeader={() => '分类列表'}>
+                            {this.props.typelist.map((v, k) => 
+                                <Item 
+                                arrow="horizontal" 
+                                key={k}
+                                extra='修改' 
+                                onClick={_ => this.toAdd(v)}>{
+                                    v.typename
+                                }</Item>
+                            )}
+                            <Item onClick={_ => this.toAdd('add')}>
+                                <i class="iconfont" style={{fontSize: 15}}>&#xe647;</i> 添加新分类
+                            </Item>
+                        </List>
+                    </div>
+                </div>
 
             </div>
         )

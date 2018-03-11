@@ -38,20 +38,24 @@ class DishList extends React.Component{
                 leftContent={<Icon onClick={_ => hashHistory.goBack()} type='left'/>}
                 >{'菜单列表'}</NavBar>
 
-                <List renderHeader={() => '菜单列表'}>
-                    {this.props.dishlist.map((v, k) => 
-                        <Item 
-                        arrow="horizontal" 
-                        key={k}
-                        extra={v.price ? `¥${v.price}` : ''} 
-                        onClick={_ => this.toAdd(v)}>{
-                            v.dishname
-                        }</Item>
-                    )}
-                    <Item onClick={_ => this.toAdd('add')}>
-                        <i class="iconfont" style={{fontSize: 15}}>&#xe647;</i> 添加新菜品
-                    </Item>
-                </List>
+                <div style={{flex: 1, overflow: 'hidden'}}>
+                    <div style={{overflow: 'auto', height: '100%'}}>
+                        <List renderHeader={() => '菜单列表'}>
+                            {this.props.dishlist.map((v, k) => 
+                                <Item 
+                                arrow="horizontal" 
+                                key={k}
+                                extra={v.price ? `¥${v.price}` : ''} 
+                                onClick={_ => this.toAdd(v)}>{
+                                    v.dishname
+                                }</Item>
+                            )}
+                            <Item onClick={_ => this.toAdd('add')}>
+                                <i class="iconfont" style={{fontSize: 15}}>&#xe647;</i> 添加新菜品
+                            </Item>
+                        </List>
+                    </div>
+                </div>
 
             </div>
         )
