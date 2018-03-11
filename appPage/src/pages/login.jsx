@@ -37,7 +37,7 @@ class Login extends Register{
     navReg = _ => hashHistory.push('/register')
 
     onUserChange = val => {
-        if(val.replace(/\s/g, '').length < 11){
+        if(val.replace(/\s/g, '').length != 11){
             this.setState({userError: true})
         }else{
             this.setState({userError: false})
@@ -72,7 +72,7 @@ class Login extends Register{
                         }
                     }}
                     error={this.state.userError}
-                    type='phone'
+                    type='number'
                     clear
                     placeholder='手机号'>手机号</InputItem>
                     <InputItem 

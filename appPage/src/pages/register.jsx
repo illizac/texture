@@ -110,7 +110,7 @@ class Register extends React.Component{
                             }
                         }}
                         error={this.state.userError}
-                        type='phone'
+                        type='number'
                         clear
                         placeholder='手机号'>手机号</InputItem>
 
